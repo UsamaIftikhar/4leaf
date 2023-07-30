@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
-import { useGLTF, OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { useGLTF, OrbitControls, PerspectiveCamera, Text, Html } from '@react-three/drei';
 import { AnimationMixer, LoopRepeat, Clock, EquirectangularReflectionMapping, MathUtils } from 'three';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-import modelPath from '../models/2_4_c.glb';
-import basicHdr from '../tex/basic.hdr';
+import modelPath from '../../models/2_4_c.glb';
+import basicHdr from '../../tex/basic.hdr';
 
 const Model = (props) => {
   const [mixer, setMixer] = useState(null);
@@ -90,18 +90,18 @@ const Model2 = () => {
   const scroll = useRef(0)
 
   return (
-    <div className='canvas-scene' style={{ position: 'relative', width: '100vw', height: '200vh' }}>
+    <div className='canvas-scene' style={{ position: 'relative', width: '100vw', height: '100vh', paddingTop: '10vh' }}>
       <Suspense fallback={null}>
         <Canvas onCreated={(state) => state.events.connect(scrollRef.current)}>
           <color attach='background' args={['black']}> </color>
           <ambientLight />
           <PerspectiveCamera
             makeDefault  // This makes the camera the default one for the scene
-            fov={75}     // Field of View (vertical angle) in degrees
+            fov={40}     // Field of View (vertical angle) in degrees
             aspect={window.innerWidth / window.innerHeight} // Aspect ratio
             near={0.1}    // Near clipping plane distance
             far={100}     // Far clipping plane distance
-            position={[0, 0, 5]} // Camera position as an array [x, y, z]
+            position={[0, 2, 5]} // Camera position as an array [x, y, z]
           />
           <pointLight position={[-1, 1, 0]} intensity={10} />
           <Environment />
@@ -110,17 +110,17 @@ const Model2 = () => {
             offset={[0, 0, 0]}
             rotation={[0, 0, -Math.PI / 180 * 45]}
             rotationSpeed={0.5}
-            scale={[1, 1, 1]}
+            scale={[0.7, 0.7, 0.7]}
             position={[0, 0, 0]}
           />
           <OrbitControls enableZoom={false} enablePan={true} enableRotate={false} />
         </Canvas>
         <div style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '200vh',
+          top: '20vh',
+          right: 0,
+          width: '50vw',
+          height: '70vh',
           backgroundColor: 'rgba(0, 66, 235, 0.4)', // change this to your preferred color and opacity
           pointerEvents: 'none',
           filter: 'blur(200px)',

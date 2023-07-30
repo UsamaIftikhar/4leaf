@@ -48,3 +48,12 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  font-family: 'Arial', sans-serif; /* Replace 'Arial' with the font you want to use */
+}
+
+/* You can also set the font-family for specific elements like headings or paragraphs */
+h1, h2, h3, p {
+  font-family: 'Arial', sans-serif;
+}
