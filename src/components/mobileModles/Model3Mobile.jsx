@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
-import { useGLTF, OrbitControls, PerspectiveCamera, Html } from '@react-three/drei';
+import { useGLTF, OrbitControls, PerspectiveCamera, Text, Html } from '@react-three/drei';
 import { AnimationMixer, LoopRepeat, Clock, EquirectangularReflectionMapping, MathUtils } from 'three';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-import modelPath from '../../models/2_4_c.glb';
+import modelPath from '../../models/3_4_c.glb';
 import basicHdr from '../../tex/basic.hdr';
 
 const Model = (props) => {
@@ -85,12 +85,12 @@ function Environment() {
   return null;
 }
 
-const Model2 = () => {
+const Model3 = () => {
   const scrollRef = useRef()
   const scroll = useRef(0)
 
   return (
-    <div className='canvas-scene' style={{ position: 'relative', width: '100vw', height: '120vh', paddingTop: '10vh' }}>
+    <div className='canvas-scene' style={{ position: 'relative', width: '100vw', height: '100vh', paddingTop: '10vh' }}>
       <Suspense fallback={null}>
         <Canvas onCreated={(state) => state.events.connect(scrollRef.current)}>
           <color attach='background' args={['black']}> </color>
@@ -101,27 +101,18 @@ const Model2 = () => {
             aspect={window.innerWidth / window.innerHeight} // Aspect ratio
             near={0.1}    // Near clipping plane distance
             far={100}     // Far clipping plane distance
-            position={[3, 2, 5]} // Camera position as an array [x, y, z]
+            position={[0, 2, 5]} // Camera position as an array [x, y, z]
           />
           <pointLight position={[-1, 1, 0]} intensity={10} />
           <Environment />
           <Model
             modelPath="1_4_c.glb"
             offset={[0, 0, 0]}
-            rotation={[0, 0, -Math.PI / 180 * 45]}
+            rotation={[-Math.PI/180*45, Math.PI/180*90, -0.3]}
             rotationSpeed={0.5}
-            scale={[0.7, 0.7, 0.7]}
+            scale={[0.6, 0.6, 0.6]}
             position={[0, 0, 0]}
           />
-          <Html position={[-5.5, 0, 0]} style={{ width: '100vh' }}>
-            <h1 className="model2-heading">
-              <p>4LEAF: Where DeFi Meets iGaming</p>
-            </h1>
-            <p className="secondary-text">
-              We've revolutionized the world of iGaming by integrating DeFi, empowering users to maximize their profits from a simple coin flip game.
-              Our cutting-edge 3D coin flip animation is the heart of our betting platform, allowing you to fully immerse yourself in the world of 4LEAF's dApp.
-            </p>
-          </Html>
           <OrbitControls enableZoom={false} enablePan={true} enableRotate={false} />
         </Canvas>
         <div style={{
@@ -144,5 +135,5 @@ const Model2 = () => {
     </div>
   );
 };
-export default Model2;
+export default Model3;
 

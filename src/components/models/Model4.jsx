@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
 import { useGLTF, OrbitControls, PerspectiveCamera, Html } from '@react-three/drei';
 import { AnimationMixer, LoopRepeat, Clock, EquirectangularReflectionMapping, MathUtils } from 'three';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-import modelPath from '../../models/2_4_c.glb';
+import modelPath from '../../models/4_4_c.glb';
 import basicHdr from '../../tex/basic.hdr';
 
 const Model = (props) => {
@@ -16,6 +16,7 @@ const Model = (props) => {
 
   useEffect(() => {
     if (animations && animations.length) {
+      console.log("animations", animations)
       const mixerInstance1 = new AnimationMixer(scene);
       const action1 = mixerInstance1.clipAction(animations[0]);
       action1.setLoop(LoopRepeat);
@@ -85,7 +86,7 @@ function Environment() {
   return null;
 }
 
-const Model2 = () => {
+const Model4 = () => {
   const scrollRef = useRef()
   const scroll = useRef(0)
 
@@ -108,7 +109,7 @@ const Model2 = () => {
           <Model
             modelPath="1_4_c.glb"
             offset={[0, 0, 0]}
-            rotation={[0, 0, -Math.PI / 180 * 45]}
+            rotation={[-Math.PI/180*45, Math.PI/180*90, 0]}
             rotationSpeed={0.5}
             scale={[0.7, 0.7, 0.7]}
             position={[0, 0, 0]}
@@ -144,5 +145,5 @@ const Model2 = () => {
     </div>
   );
 };
-export default Model2;
+export default Model4;
 
