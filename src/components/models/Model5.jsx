@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
-import { useGLTF, OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import { AnimationMixer, LoopOnce, LoopRepeat, Clock, EquirectangularReflectionMapping, MathUtils } from 'three';
+import { useGLTF, OrbitControls, PerspectiveCamera, Html } from '@react-three/drei';
+import { AnimationMixer, LoopRepeat, Clock, EquirectangularReflectionMapping, MathUtils } from 'three';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-import modelPath from '../models/1_4_c.glb';
-import basicHdr from '../tex/basic.hdr';
+import modelPath from '../../models/5_4_c.glb';
+import basicHdr from '../../tex/basic.hdr';
 
 const Model = (props) => {
   const [mixer, setMixer] = useState(null);
@@ -16,24 +16,16 @@ const Model = (props) => {
 
   useEffect(() => {
     if (animations && animations.length) {
-
-      // making seperate instances because if use one the other animation is not completed
+      console.log("animations", animations)
       const mixerInstance1 = new AnimationMixer(scene);
-      const mixerInstance2 = new AnimationMixer(scene);
-
-      // action1 looping once
       const action1 = mixerInstance1.clipAction(animations[0]);
-      action1.setLoop(LoopOnce);
+      action1.setLoop(LoopRepeat);
       action1.clampWhenFinished = true;
+      action1.timeScale = 0.2;
       action1.play();
 
-      // action2 looping infinity
-      const action2 = mixerInstance2.clipAction(animations[1]);
-      action2.timeScale = 0.2;
-      action2.setLoop(LoopRepeat);
-
-      setMixer([mixerInstance1, mixerInstance2]);
-      setActions([action1, action2]);
+      setMixer([mixerInstance1]);
+      setActions([action1]);
     }
   }, [scene, animations]);
 
@@ -50,11 +42,6 @@ const Model = (props) => {
   useFrame((state, delta) => {
     if (mixer) {
       mixer[0].update(delta);
-      mixer[1].update(delta);
-
-      if (!actions[0].isRunning() && !actions[1].isRunning()) {
-        actions[1].play();
-      }
     }
 
     if (ref.current) {
@@ -99,42 +86,42 @@ function Environment() {
   return null;
 }
 
-const Model1 = () => {
+const Model5 = () => {
   const scrollRef = useRef()
   const scroll = useRef(0)
 
   return (
-    <div className='canvas-scene' style={{ position: 'relative', width: '100vw', height: '200vh' }}>
+    <div className='canvas-scene' style={{ position: 'relative', width: '100vw', height: '120vh', paddingTop: '10vh' }}>
       <Suspense fallback={null}>
         <Canvas onCreated={(state) => state.events.connect(scrollRef.current)}>
           <color attach='background' args={['black']}> </color>
           <ambientLight />
           <PerspectiveCamera
             makeDefault  // This makes the camera the default one for the scene
-            fov={75}     // Field of View (vertical angle) in degrees
+            fov={40}     // Field of View (vertical angle) in degrees
             aspect={window.innerWidth / window.innerHeight} // Aspect ratio
             near={0.1}    // Near clipping plane distance
             far={100}     // Far clipping plane distance
-            position={[0, 0, 5]} // Camera position as an array [x, y, z]
+            position={[0, 2, 5]} // Camera position as an array [x, y, z]
           />
           <pointLight position={[-1, 1, 0]} intensity={10} />
           <Environment />
           <Model
             modelPath="1_4_c.glb"
             offset={[0, 0, 0]}
-            rotation={[0, 0, -Math.PI / 180 * 45]}
+            rotation={[-Math.PI/180*45, Math.PI/180*90, 0]}
             rotationSpeed={0.5}
-            scale={[1, 1, 1]}
+            scale={[0.7, 0.7, 0.7]}
             position={[0, 0, 0]}
           />
           <OrbitControls enableZoom={false} enablePan={true} enableRotate={false} />
         </Canvas>
         <div style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '200vh',
+          top: '20vh',
+          left: '40vh',
+          width: '50vw',
+          height: '70vh',
           backgroundColor: 'rgba(0, 66, 235, 0.4)', // change this to your preferred color and opacity
           pointerEvents: 'none',
           filter: 'blur(200px)',
@@ -149,5 +136,5 @@ const Model1 = () => {
     </div>
   );
 };
-export default Model1;
+export default Model5;
 

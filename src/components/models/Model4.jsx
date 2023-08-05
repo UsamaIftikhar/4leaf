@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef, Suspense } from 'react';
 import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
-import { useGLTF, OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { useGLTF, OrbitControls, PerspectiveCamera, Html } from '@react-three/drei';
 import { AnimationMixer, LoopRepeat, Clock, EquirectangularReflectionMapping, MathUtils } from 'three';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-import modelPath from '../models/2_4_c.glb';
-import basicHdr from '../tex/basic.hdr';
+import modelPath from '../../models/4_4_c.glb';
+import basicHdr from '../../tex/basic.hdr';
 
 const Model = (props) => {
   const [mixer, setMixer] = useState(null);
@@ -16,6 +16,7 @@ const Model = (props) => {
 
   useEffect(() => {
     if (animations && animations.length) {
+      console.log("animations", animations)
       const mixerInstance1 = new AnimationMixer(scene);
       const action1 = mixerInstance1.clipAction(animations[0]);
       action1.setLoop(LoopRepeat);
@@ -85,42 +86,51 @@ function Environment() {
   return null;
 }
 
-const Model2 = () => {
+const Model4 = () => {
   const scrollRef = useRef()
   const scroll = useRef(0)
 
   return (
-    <div className='canvas-scene' style={{ position: 'relative', width: '100vw', height: '200vh' }}>
+    <div className='canvas-scene' style={{ position: 'relative', width: '100vw', height: '120vh', paddingTop: '10vh' }}>
       <Suspense fallback={null}>
         <Canvas onCreated={(state) => state.events.connect(scrollRef.current)}>
           <color attach='background' args={['black']}> </color>
           <ambientLight />
           <PerspectiveCamera
             makeDefault  // This makes the camera the default one for the scene
-            fov={75}     // Field of View (vertical angle) in degrees
+            fov={40}     // Field of View (vertical angle) in degrees
             aspect={window.innerWidth / window.innerHeight} // Aspect ratio
             near={0.1}    // Near clipping plane distance
             far={100}     // Far clipping plane distance
-            position={[0, 0, 5]} // Camera position as an array [x, y, z]
+            position={[3, 2, 5]} // Camera position as an array [x, y, z]
           />
           <pointLight position={[-1, 1, 0]} intensity={10} />
           <Environment />
           <Model
             modelPath="1_4_c.glb"
             offset={[0, 0, 0]}
-            rotation={[0, 0, -Math.PI / 180 * 45]}
+            rotation={[-Math.PI/180*45, Math.PI/180*90, 0]}
             rotationSpeed={0.5}
-            scale={[1, 1, 1]}
+            scale={[0.7, 0.7, 0.7]}
             position={[0, 0, 0]}
           />
+          <Html position={[-5.5, 0, 0]} style={{ width: '100vh' }}>
+            <h1 className="model2-heading">
+              <p>4LEAF: Where DeFi Meets iGaming</p>
+            </h1>
+            <p className="secondary-text">
+              We've revolutionized the world of iGaming by integrating DeFi, empowering users to maximize their profits from a simple coin flip game.
+              Our cutting-edge 3D coin flip animation is the heart of our betting platform, allowing you to fully immerse yourself in the world of 4LEAF's dApp.
+            </p>
+          </Html>
           <OrbitControls enableZoom={false} enablePan={true} enableRotate={false} />
         </Canvas>
         <div style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '200vh',
+          top: '20vh',
+          right: 0,
+          width: '50vw',
+          height: '70vh',
           backgroundColor: 'rgba(0, 66, 235, 0.4)', // change this to your preferred color and opacity
           pointerEvents: 'none',
           filter: 'blur(200px)',
@@ -135,5 +145,5 @@ const Model2 = () => {
     </div>
   );
 };
-export default Model2;
+export default Model4;
 

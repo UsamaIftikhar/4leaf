@@ -1,0 +1,43 @@
+.heading-container {
+  display: flex;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+}
+
+.after-model-text {
+  color: white;
+  font-size: 40px;
+  font-weight: 400;
+  text-align: start;
+  margin: 50px;
+  overflow-y: scroll;
+}
+
+.top-text-style {
+  color: white;
+  margin-top: 0px;
+  font-size: 68px;
+  font-weight: 400;
+  max-width: 1200px;
+}
+
+.model2-heading {
+  color: white;
+  font-weight: 400;
+  font-size: 48px;
+  text-align: start;
+  margin-left: 50px;
+}
+
+.model2 {
+  display: flex;
+}
+
+.secondary-text {
+  color: #8191b1;
+  font-weight: 400;
+  font-size: 28px;
+  text-align: start;
+  margin-left: 50px;
+}

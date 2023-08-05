@@ -43,8 +43,23 @@
 }
 
 #root {
+  scroll-behavior: smooth;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: 'Arial', sans-serif; /* Replace 'Arial' with the font you want to use */
+}
+
+/* You can also set the font-family for specific elements like headings or paragraphs */
+h1, h2, h3, p {
+  font-family: 'Arial', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
