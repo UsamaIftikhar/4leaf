@@ -13,8 +13,12 @@ import Model2Text from './components/texts/Model2Text';
 import Model3Text from './components/texts/Model3Text';
 import Model4Text from './components/texts/Model4Text';
 import Model5Text from './components/texts/Model5Text';
+import ThreeColumnText from './components/texts/ThreeColumnText';
 import './styles/componentsStyles.css';
 import React, { useState } from 'react';
+import PhotoGridText from './components/texts/PhotoGridText';
+import EndingText from './components/texts/EndingText';
+import Footer from './components/Footer';
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -64,7 +68,18 @@ function App() {
       <div>
         <Model5 />
       </div>
-      <div style={{ height: '50vh' }} />
+      <div>
+        <ThreeColumnText />
+      </div>
+      <div>
+        <PhotoGridText />
+      </div>
+      <div>
+        <EndingText />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

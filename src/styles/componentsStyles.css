@@ -41,3 +41,180 @@
   text-align: start;
   margin-left: 50px;
 }
+
+.flex-display {
+  display: flex;
+}
+ 
+.container {
+  display: flex;
+  align-items: stretch;
+  color: white;
+}
+
+.section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  flex: 1;
+  padding: 10px;
+  margin-left: 70px;
+  margin-right: 70px;
+  text-align: start;
+  box-sizing: border-box;
+}
+
+.divider {
+ border-right: 1px solid gray;
+}
+
+.heading {
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.paragraph-text {
+  color: rgb(78, 85, 98);
+  font-size: 20px;
+  text-align: start;
+}
+
+.margin-top {
+  margin-top: 140px;
+}
+
+.grid-upper-two {
+  justify-content: center;
+  min-width: 80%;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.grid-text-box {
+  width: 50%;
+  min-height: 350px;
+  /* background-color: red; */
+}
+
+.grid-image-container {
+  display: flex;
+  position: relative;
+  background-color: rgb(0, 14, 74);
+  width: 50%;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-box {
+  width: 240px;
+  height: 240px;
+  position: relative;
+  background-color: #2b6bc9;
+  filter: blur(100px);
+}
+
+.image-class {
+  position: absolute;
+  left: 100px;
+  top: -10px;
+}
+
+.image-class2 {
+  position: absolute;
+  left: 150px;
+  top: 20px;
+}
+
+.text-box-color {
+  background-color: #2b6bc9;
+}
+
+.text-box {
+  display: flex;
+  align-items:stretch;
+}
+
+.subheading {
+  color: white;
+  font-size: 24px;
+  text-align: start;
+}
+
+.align-start {
+  text-align: start;
+}
+
+.margin-50 {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.text-blur {
+  opacity: 0.6;
+}
+
+.margin-bottom {
+  margin-bottom: 40px;
+}
+
+.upper-text {
+  margin-top: 60px;
+}
+
+.bottom-text {
+  margin-top: 100px;
+}
+
+.ending-text {
+  font-size: 36px;
+  font-weight: 400;
+  padding: 100px;
+  background-color: rgb(0, 14, 74);;
+  color: white;
+  padding-left: 200px;
+  padding-right: 200px;
+  margin-top: 100px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  min-width: 80%;
+  margin-left: 100px;
+  margin-right: 100px;
+  color: white;
+  margin-top: 100px;;
+}
+
+.footer-image {
+  width: 70px;
+  height: 70px;
+}
+
+.footer-left-container {
+  max-width: 50%;
+  text-align: start;
+}
+
+.footer-menu {
+  width: 50%;
+  text-align: start;
+  height: 100%;
+}
+
+.menu-item {
+  font-size: 18px;
+  margin-bottom: 22px;
+}
+
+.last-menu-item {
+  margin-top: 150px;
+}
+
+.social-media-links {
+  margin-left: 250px;
+}
+
+.App {
+  padding-bottom: 100px;
+}
