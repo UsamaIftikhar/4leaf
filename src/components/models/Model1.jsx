@@ -3,8 +3,8 @@ import { Canvas, useFrame, useThree, useLoader } from '@react-three/fiber';
 import { useGLTF, OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { AnimationMixer, LoopOnce, LoopRepeat, Clock, EquirectangularReflectionMapping, MathUtils } from 'three';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
-import modelPath from '../../models/1_4_c.glb';
 import basicHdr from '../../tex/basic.hdr';
+const modelPath = process.env.PUBLIC_URL + '/1_4_c.glb';
 
 const Model = (props) => {
   const [mixer, setMixer] = useState(null);
